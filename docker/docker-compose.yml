@@ -1,0 +1,66 @@
+version: '3.1'
+services:
+  webapp1:
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/webapp
+      - OKTA_OAUTH2_ISSUER=${OKTA_OAUTH2_ISSUER}
+      - OKTA_OAUTH2_CLIENT_ID=${OKTA_OAUTH2_CLIENT_ID}
+      - OKTA_OAUTH2_CLIENT_SECRET=${OKTA_OAUTH2_CLIENT_SECRET}
+    image: webapp
+    hostname: webapp1
+    ports:
+      - 8081:8080
+    depends_on:
+      - "db"
+  webapp2:
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/webapp
+      - OKTA_OAUTH2_ISSUER=${OKTA_OAUTH2_ISSUER}
+      - OKTA_OAUTH2_CLIENT_ID=${OKTA_OAUTH2_CLIENT_ID}
+      - OKTA_OAUTH2_CLIENT_SECRET=${OKTA_OAUTH2_CLIENT_SECRET}
+    image: webapp
+    hostname: webapp2
+    ports:
+      - 8082:8080
+    depends_on:
+      - "db"
+  webapp3:
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/webapp
+      - OKTA_OAUTH2_ISSUER=${OKTA_OAUTH2_ISSUER}
+      - OKTA_OAUTH2_CLIENT_ID=${OKTA_OAUTH2_CLIENT_ID}
+      - OKTA_OAUTH2_CLIENT_SECRET=${OKTA_OAUTH2_CLIENT_SECRET}
+    image: webapp
+    hostname: webapp3
+    ports:
+      - 8083:8080
+    depends_on:
+      - "db"
+
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: webapp
+    ports:
+      - 3306:3306
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8090:8080
+
+  haproxy:
+    build:
+      context: .
+      dockerfile: Dockerfile-haproxy
+    image: my-haproxy
+    ports:
+      - 80:80
+    depends_on:
+      - "webapp1"
+      - "webapp2"
+      - "webapp3"

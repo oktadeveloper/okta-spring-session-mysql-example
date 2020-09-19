@@ -1,0 +1,16 @@
+spring:
+  session:
+    jdbc:
+      initialize-schema: always
+  datasource:
+    url: jdbc:mysql://localhost:3306/webapp
+    username: root
+    password: example
+    driverClassName: com.mysql.cj.jdbc.Driver
+    hikari:
+      initializationFailTimeout: 0
+
+logging:
+  level:
+    org.springframework: INFO
+    com.zaxxer.hikari: DEBUG
