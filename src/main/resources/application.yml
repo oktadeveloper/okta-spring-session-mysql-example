@@ -1,3 +1,10 @@
+#Tue Sep 29 19:26:45 MDT 2020
+okta:
+  oauth2:
+    issuer: https://dev-133320.okta.com/oauth2/default
+    client-secret: M7KSIEMtwdO6HJroj-_FF2j1R89Jq6Jn0DnSMFma
+    client-id: 0oa5q0k6n8kleT15w357
+
 spring:
   session:
     jdbc:
