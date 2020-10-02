@@ -30,9 +30,9 @@ Setup the client application:
 
 From the **Applications** page, choose **Add Application**. On the Create New Application page, select **Web**. Set the following values:
 - Name: webapp
-- Base URIs: http://localhost/
-- Login redirect URIs: http://localhost/login/oauth2/code/okta
-- Logout redirect URIs: http://localhost
+- Base URIs: `http://localhost/`
+- Login redirect URIs: `http://localhost/login/oauth2/code/okta`
+- Logout redirect URIs: `http://localhost`
 - Grant type allowed: Authorization Code
 
 Copy the **Client ID** and **Client Secret**. Go to the Dashboard home and copy the **Org URL** from the top right corner.
